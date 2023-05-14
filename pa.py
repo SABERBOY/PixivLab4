@@ -112,7 +112,7 @@ def rename_with_short_name(files: List[str]):
             continue
         # 获取文件后缀
         file_ext = os.path.splitext(file_name)[1]
-        id = file_name.split("_")[0]
+        id = file_name.split("-")[0]
         user_name = file_name.split("-by-")[1].split(".")[0]
         new_name = id + file_ext
         # renme and check file is exists
@@ -122,10 +122,11 @@ def rename_with_short_name(files: List[str]):
             os.rename(file, os.path.dirname(file) + "/" + new_name)
         else:
             os.rename(file, os.path.dirname(file) + "/" + new_name)
+        path = os.path.dirname(file) + "/" + new_name
         struct.append(
             {
                 "name": id,
-                "path": files[i],
+                "path": path,
                 "index": i,
                 "user": user_name,
                 "ext": file_ext,
@@ -146,7 +147,7 @@ def get_file_list(path: str, file_ext: List[str]) -> List[str]:
 
 def get_proxy():
     proxies = {"http": "http://127.0.0.1:10900", "https": "http://127.0.0.1:10900"}
-    proxies = None
+    # proxies = None
     return proxies
 
 
